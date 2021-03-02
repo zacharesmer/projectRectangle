@@ -32,9 +32,24 @@ public class Rectangle {
      * A constructor has no return type in the header, not even void!
      * A constructor has the same name as the class.
      */
-    public Rectangle(double len, double wid){
-        length = len;
-        width = wid;
+    public Rectangle(double length, double width){
+        /*
+        We can name the parameters the same as the instance variables.
+        Then we use the reference variable this as a reference to the object,
+         e.g., the expression this.width refers to the Rectangle object's width field.
+        */
+        this.length = length;
+        this.width = width;
+    }
+
+    /* We can overload constructors (and other methods),
+     * ensuring that the method signatures differ.
+     * They need to have a different and/or type of parameters.
+     */
+    public Rectangle(){
+        // We can use the reference variable this to have one constructor call another
+        // **as the first line** of the body.
+        this(0, 0);
     }
 
     /* These instance methods for actions on Rectangle objects
@@ -51,15 +66,26 @@ public class Rectangle {
     }
 
     @Override
+    /**
+     * toString -
+     * instance method to return a String that describes the object effectively
+     */
     public String toString() {
-        return "Rectangle{" +
-                "length=" + length +
-                ", width=" + width +
-                '}';
+        return String.format("Rectangle{length=%f, width=%f}", length, width);
     }
 
     public boolean equals(Rectangle other) {
         return (length == other.length) && (width == other.width);
+    }
+
+    public void copy(Rectangle other){
+        length = other.length;
+        width = other.width;
+    }
+
+    public Rectangle copy2(){
+        Rectangle myCopy = new Rectangle(length, width);
+        return myCopy;
     }
 
     /* These instance methods are "mutators" or a "setters".

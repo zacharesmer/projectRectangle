@@ -29,6 +29,9 @@ public class Main {
          */
         Rectangle rect1 = new Rectangle(5, 1.3);
         Rectangle rect2 = new Rectangle(5, 1.3);
+        Rectangle rect4 = new Rectangle(0, 0);
+        Rectangle rect6 = new Rectangle();
+
         // To create a Rectangle object is to create an instance of the Rectangle class.
         // We instantiate the Rectangle class.
 
@@ -52,7 +55,7 @@ public class Main {
          * dimensions, but == will return false because the two objects have different
          * memory addresses stored in the reference variables rect1 and rect2:
          */
-        System.out.println(rect1 == rect2);
+        System.out.println(rect1 == rect2); // Don't use == to compare objects.
 
         // Instead write an equals method in the Rectangle class, and call it.
         System.out.println(rect1.equals(rect2));
@@ -64,11 +67,73 @@ public class Main {
         rect1.setLength(12.5);
         rect1.setWidth(3);
 
-        // The Rectangle objects have now changed!
+        // The Rectangle objects rect1 has now changed!
         System.out.println(rect1);
         System.out.println(rect2);
 
         // The Rectangles objects are no longer equal.
         System.out.println(rect1.equals(rect2));
+
+        System.out.println();
+
+        /*
+        Watch out!  This is a reference copy
+        that copies the address rather than the object.
+        */
+        Rectangle rect3 = rect1; // Don't do a reference copy!  Write a copy method.
+
+        System.out.println(rect1);
+        System.out.println(rect3);
+
+        System.out.println();
+
+        rect1.setLength(25);
+
+        System.out.println(rect1);
+        System.out.println(rect3);
+
+        System.out.println();
+
+        System.out.println(rect1);
+        System.out.println(rect4);
+
+        // Write a copy method instead, and call it.
+        rect4.copy(rect1);
+
+        System.out.println();
+
+        System.out.println(rect1);
+        System.out.println(rect4);
+
+        System.out.println();
+
+        rect1.setLength(50);
+
+        System.out.println(rect1);
+        System.out.println(rect4);
+
+        // Copy rect1 using copy2.
+        Rectangle rect5 = rect1.copy2();
+
+        System.out.println();
+
+        System.out.println(rect1);
+        System.out.println(rect5);
+
+        System.out.println();
+
+        rect1.setLength(100);
+
+        System.out.println(rect1);
+        System.out.println(rect5);
+
+        System.out.println();
+        System.out.println(rect6);
+
+
+
+
+
+
     }
 }
