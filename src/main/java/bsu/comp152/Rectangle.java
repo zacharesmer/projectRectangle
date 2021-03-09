@@ -1,5 +1,3 @@
-package bsu.comp152;
-
 /**
  * Rectangle class
  *
@@ -10,6 +8,9 @@ package bsu.comp152;
  * Completed by: [student name], [student email]
  *         date: [date of completion]
  */
+package bsu.comp152;
+import java.util.Random;
+
 public class Rectangle {
 
     /* This class is a (blueprint) class
@@ -27,6 +28,9 @@ public class Rectangle {
      */
     private double length;
     private double width;
+    /* Don't create an instance variable area. It could get out of sync with
+     * length and width, yielding "stale data".
+     */
 
     /* This is a "constructor" for a Rectangle object.
      * A constructor has no return type in the header, not even void!
@@ -52,6 +56,12 @@ public class Rectangle {
         this(0, 0);
     }
 
+    // This is a copy constructor.
+    public Rectangle(Rectangle other){
+        length = other.length;
+        width = other.width;
+    }
+
     /* These instance methods for actions on Rectangle objects
      * are "accessors" or "getters".
      * We call them on Rectangle objects to get information about the
@@ -65,6 +75,10 @@ public class Rectangle {
         return width;
     }
 
+    public double getArea() {
+        return length*width;
+    }
+
     @Override
     /**
      * toString -
@@ -76,6 +90,10 @@ public class Rectangle {
 
     public boolean equals(Rectangle other) {
         return (length == other.length) && (width == other.width);
+    }
+
+    public boolean isSquare(){
+        return length == width;
     }
 
     public void copy(Rectangle other){
@@ -98,5 +116,25 @@ public class Rectangle {
 
     public void setWidth(double wid){
         width = wid;
+    }
+
+    /** A method to exchange length and width.
+     */
+    public void rotate(){
+        double temp = length; // Save the original length.
+        length = width; // Overwrite length with width.
+        width = temp; // Overwrite width with the original length.
+    }
+
+    /** A method to randomize the length and width
+     * to be random doubles on the interval [0, 21).
+     */
+    public void randommize(){
+        Random rand = new Random();
+        /* For length and width, add a random integer between 0 and 20 inclusive
+         * to a random double on the interval [0, 1).
+         */
+        length = rand.nextInt(21) + Math.random();
+        width = rand.nextInt(21) + Math.random();
     }
 }

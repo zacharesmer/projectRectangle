@@ -30,7 +30,6 @@ public class Main {
         Rectangle rect1 = new Rectangle(5, 1.3);
         Rectangle rect2 = new Rectangle(5, 1.3);
         Rectangle rect4 = new Rectangle(0, 0);
-        Rectangle rect6 = new Rectangle();
 
         // To create a Rectangle object is to create an instance of the Rectangle class.
         // We instantiate the Rectangle class.
@@ -82,15 +81,16 @@ public class Main {
         */
         Rectangle rect3 = rect1; // Don't do a reference copy!  Write a copy method.
 
+        // Reference variable rect3 now points to the same object as rect1.
         System.out.println(rect1);
         System.out.println(rect3);
 
         System.out.println();
 
-        rect1.setLength(25);
+        rect1.setLength(25); // If we modify rect1...
 
         System.out.println(rect1);
-        System.out.println(rect3);
+        System.out.println(rect3); // then rect3 changes, too, which is not desirable.
 
         System.out.println();
 
@@ -98,7 +98,7 @@ public class Main {
         System.out.println(rect4);
 
         // Write a copy method instead, and call it.
-        rect4.copy(rect1);
+        rect4.copy(rect1); // This copy method overwrites rect4's data with rect1's.
 
         System.out.println();
 
@@ -107,13 +107,13 @@ public class Main {
 
         System.out.println();
 
-        rect1.setLength(50);
+        rect1.setLength(50); // If we change rect1...
 
         System.out.println(rect1);
-        System.out.println(rect4);
+        System.out.println(rect4); // then rect4 remains unchanged as desired.
 
         // Copy rect1 using copy2.
-        Rectangle rect5 = rect1.copy2();
+        Rectangle rect5 = rect1.copy2(); // This copy method returns a new Rectangle.
 
         System.out.println();
 
@@ -122,18 +122,31 @@ public class Main {
 
         System.out.println();
 
-        rect1.setLength(100);
+        rect1.setLength(100); // If we change rect1...
 
         System.out.println(rect1);
-        System.out.println(rect5);
+        System.out.println(rect5); // then rect5 remains unchanged as desired.
 
+        Rectangle rect6 = new Rectangle();
         System.out.println();
+        System.out.println("Create a Rectangle with the no-parameter constructor:");
         System.out.println(rect6);
 
+        System.out.println();
 
+        System.out.println("Rectangle 1 is: " + rect1);
+        Rectangle rect7 = new Rectangle(rect1); // Call the copy constructor!
+        System.out.println("Rectangle 7 is a copy: " + rect7);
 
+        System.out.println();
 
-
-
+        System.out.println("Rect1 is a square: " + rect1.isSquare());
+        System.out.println("Rect1 area is: " + rect1.getArea());
+        System.out.println("Rotate rect1.");
+        rect1.rotate();
+        System.out.println("Now rect1 is: " + rect1);
+        System.out.println("Randomize rect1.");
+        rect1.randommize();
+        System.out.println("Now rect1 is: " + rect1);
     }
 }
