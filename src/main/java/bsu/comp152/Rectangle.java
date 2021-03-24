@@ -48,7 +48,7 @@ public class Rectangle {
 
     /* We can overload constructors (and other methods),
      * ensuring that the method signatures differ.
-     * They need to have a different and/or type of parameters.
+     * They need to have a different number and/or type of parameters.
      */
     public Rectangle(){
         // We can use the reference variable this to have one constructor call another
@@ -90,6 +90,16 @@ public class Rectangle {
 
     public boolean equals(Rectangle other) {
         return (length == other.length) && (width == other.width);
+    }
+
+    public boolean isBiggerThan(Rectangle other){
+        // Just for fun,
+        // throw an IllegalArgumentException when comparing a 0x0 rectangle with a 0x0 rectangle.
+        if ((getArea() == 0) && (other.getArea() == 0)){
+            throw new IllegalArgumentException();
+        }
+        // Check if the area of the Rectangle is bigger than the area of the other Rectangle.
+        return getArea() > other.getArea();
     }
 
     public boolean isSquare(){
